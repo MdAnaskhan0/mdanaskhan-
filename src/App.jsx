@@ -277,16 +277,16 @@ const App = () => {
               <div className="inline-block px-3 py-1 mb-6 text-sm bg-gray-800 rounded-full text-green-400 border border-gray-700">
                 <span className="animate-pulse">●</span> Available for new opportunities
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <h1 className="text-4xl md:text-7xl font-bold mb-6">
                 Hi, I'm <span className="text-green-400">Anas</span>
               </h1>
-              <h2 className="text-2xl md:text-3xl text-gray-300 mb-8">
+              <h2 className="text-xl md:text-3xl text-gray-300 mb-8">
                 Full Stack Developer & IT Professional
               </h2>
-              <p className="text-lg text-gray-400 mb-10">
+              <p className="text-md text-gray-400 mb-10">
                 I build exceptional digital experiences focused on performance, accessibility, and clean code.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-2 md:space-x-4">
                 <a href="#projects" className="bg-green-500 hover:bg-green-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
                   View Projects
                 </a>
@@ -346,13 +346,13 @@ const App = () => {
               </div>
             </div>
             <div className="md:w-2/3 md:pl-12">
-              <p className="text-lg text-gray-300 mb-6">
+              <p className="text-md text-gray-300 mb-6">
                 I'm a passionate developer with experience in IT infrastructure management and full-stack web development. I enjoy turning complex ideas into elegant, intuitive solutions.
               </p>
-              <p className="text-lg text-gray-300 mb-8">
+              <p className="text-md text-gray-300 mb-8">
                 My goal is to leverage my skills to deliver secure, high-performance, and user-focused digital solutions. I'm driven by curiosity, adaptability, and a commitment to turning challenges into opportunities.
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 {[
                   { label: 'Name', value: 'Md. Anas Khan' },
                   { label: 'Email', value: 'anas.cse.201@gmail.com' },
@@ -404,7 +404,7 @@ const App = () => {
                       <span className="hidden md:block">•</span>
                       <span className="md:ml-4 text-green-400">{exp.period}</span>
                     </div>
-                    <p className="text-gray-300 mb-6">{exp.description}</p>
+                    <p className="text-sm md:text-xl text-gray-300 mb-6">{exp.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, i) => (
                         <span key={i} className="px-3 py-1 bg-gray-900 text-green-400 text-sm rounded-full">
@@ -467,7 +467,7 @@ const App = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <p className="text-sm md:text-xl text-gray-400 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, i) => (
                       <span key={i} className="px-3 py-1 bg-gray-900 text-green-400 text-sm rounded-full">
@@ -496,7 +496,7 @@ const App = () => {
           <h2 className="text-3xl font-bold mb-12 text-center">
             <span className="text-green-400">#</span> Skills
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skill, index) => (
               <div key={index} className="bg-gray-900 p-6 rounded-lg">
                 <div className="flex items-center justify-between mb-2">
