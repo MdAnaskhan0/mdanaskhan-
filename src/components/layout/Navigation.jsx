@@ -1,4 +1,5 @@
-import { FaCode } from 'react-icons/fa';
+import { FaCode, FaBars } from 'react-icons/fa';
+import Logo from '../../assets/profile/Logo.png'
 
 const Navigation = ({ activeSection, setActiveSection }) => {
     const navItems = ['home', 'about', 'experience', 'education', 'projects', 'skills', 'certifications', 'contact'];
@@ -8,8 +9,10 @@ const Navigation = ({ activeSection, setActiveSection }) => {
             <div className="container mx-auto px-6 py-4">
                 <div className="flex justify-between items-center">
                     <div className="text-xl font-bold text-green-400 flex items-center">
-                        <FaCode className="w-6 h-6 mr-2" />
-                        Md. Anas Khan
+                        {/* <FaCode className="w-6 h-6 mr-2" />
+                        Md. Anas Khan */}
+                        <img src={Logo} alt="logo" className='md:w-[75px]' />
+
                     </div>
                     <div className="hidden md:flex space-x-8">
                         {navItems.map((item) => (
