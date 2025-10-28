@@ -1,6 +1,7 @@
 import {
     SiJavascript, SiReact, SiNodedotjs, SiTailwindcss,
-    SiPhp, SiMysql, SiMongodb, SiGit
+    SiPhp, SiMysql, SiMongodb, SiGit,
+    SiMikrotik
 } from 'react-icons/si';
 
 const iconMap = {
@@ -11,7 +12,8 @@ const iconMap = {
     SiPhp: SiPhp,
     SiMysql: SiMysql,
     SiMongodb: SiMongodb,
-    SiGit: SiGit
+    SiGit: SiGit,
+    SiMikrotik: SiMikrotik,
 };
 
 const SkillCard = ({ skill }) => {
@@ -30,7 +32,8 @@ const SkillCard = ({ skill }) => {
                                             skill.name === 'PHP' ? "text-purple-500" :
                                                 skill.name === 'MySQL' ? "text-blue-600" :
                                                     skill.name === 'MongoDB' ? "text-green-600" :
-                                                        "text-orange-500"
+                                                        skill.name === 'MikroTik' ? "text-[#3d4d59]" :
+                                                            "text-orange-500"
                         } />
                     </span>
                     <span className="font-medium">{skill.name}</span>

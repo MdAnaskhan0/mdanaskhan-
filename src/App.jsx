@@ -9,20 +9,51 @@ import Projects from './components/sections/Projects';
 import Skills from './components/sections/Skills';
 import Certifications from './components/sections/Certifications';
 import Contact from './components/sections/Contact';
+import LoaderImage from './assets/profile/LoaderImage.jpg'
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Preloader effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // 3 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Handle navigation
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.substring(1);
-      if (hash) setActiveSection(hash);
-    };
+    if (!isLoading) {
+      const handleHashChange = () => {
+        const hash = window.location.hash.substring(1);
+        if (hash) setActiveSection(hash);
+      };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+      window.addEventListener('hashchange', handleHashChange);
+      return () => window.removeEventListener('hashchange', handleHashChange);
+    }
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 z-50">
+        <div className="text-center">
+          <img
+            src={LoaderImage}
+            alt="Loading..."
+            className="mx-auto mb-4 w-32 h-32 object-contain rounded-full animate-spin"
+            style={{
+              animationDuration: '3s',
+              animationTimingFunction: 'linear'
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 font-mono">
