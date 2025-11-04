@@ -107,6 +107,15 @@ export const projects = [
     demo: "https://github.com/MdAnaskhan0/Realtime-Chat.git",
     image: RealtimeChat,
   },
+  {
+    title: "WhatsBlast Engine",
+    description:
+      "A WhatsApp Bulk Sender that enables automated messaging to multiple contacts through a web interface. Built with Node.js backend and React frontend, it features QR-based authentication and supports Bangladesh number formatting for efficient communication.",
+    tags: ["React", "Node.js", "Express.js", "WhatsApp Web API", "Bulk Messaging", "REST API", "JavaScript", "Tailwind CSS", "Web Automation", "QR Authentication"],
+    github: "https://github.com/MdAnaskhan0/Bulk-WhatsApp-Message.git",
+    demo: "https://github.com/MdAnaskhan0/Bulk-WhatsApp-Message.git",
+    image: RealtimeChat,
+  },
 ];
 
 export const skills = [
