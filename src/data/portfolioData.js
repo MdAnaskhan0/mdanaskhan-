@@ -2,6 +2,8 @@ import MED from "../assets/ProjectImage/med.png";
 import DailyNeeds from "../assets/ProjectImage/ecommers.png";
 import HospitalManagement from "../assets/ProjectImage/hms.png";
 import RealtimeChat from "../assets/ProjectImage/chat.png";
+import Bullk from "../assets/ProjectImage/Bulk.png";
+// eslint-disable-next-line no-unused-vars
 import { image } from "framer-motion/client";
 
 export const personalInfo = {
@@ -110,11 +112,11 @@ export const projects = [
   {
     title: "WhatsBlast Engine",
     description:
-      "A WhatsApp Bulk Sender that enables automated messaging to multiple contacts through a web interface. Built with Node.js backend and React frontend, it features QR-based authentication and supports Bangladesh number formatting for efficient communication.",
-    tags: ["React", "Node.js", "Express.js", "WhatsApp Web API", "Bulk Messaging", "REST API", "JavaScript", "Tailwind CSS", "Web Automation", "QR Authentication"],
+      "A web-based WhatsApp Bulk Messenger using Node.js and React with QR authentication and Bangladesh number formatting for efficient multi-contact communication.",
+    tags: ["React", "Node.js", "WhatsApp Web API", "Bulk Messaging", "JavaScript", "Tailwind CSS", "Web Automation", "QR Authentication"],
     github: "https://github.com/MdAnaskhan0/Bulk-WhatsApp-Message.git",
     demo: "https://github.com/MdAnaskhan0/Bulk-WhatsApp-Message.git",
-    image: RealtimeChat,
+    image: Bullk,
   },
 ];
 
