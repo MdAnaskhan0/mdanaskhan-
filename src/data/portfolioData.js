@@ -134,9 +134,31 @@ export const skills = [
 
 export const experiences = [
   {
+    role: "IT Engineer",
+    company: "H & B Tech ",
+    period: "January 2026 – Present",
+    description:
+      "IT Engineer at H & B Tech specializing in airport cargo automation, maintaining CMS, WCS, and TCS integrated with PLC and ASRS for end-to-end cargo operations.",
+    technologies: [
+      "IT Infrastructure",
+      "System Administration",
+      "Cargo Management System (CMS)",
+      "Warehouse Control System (WCS)",
+      "Truck Control System (TCS)",
+      "Automated Storage & Retrieval System (ASRS)",
+      "Storage & Retrieval Machine (SRM)",
+      "Programmable Logic Controller (PLC)",
+      "Conveyor & Roller Systems (FRD / PRD)",
+      "Elevator Transfer Vehicle (ETV)",
+      "Hoist & Station Control Systems",
+      "Industrial Sensors & Limit Switches",
+      "Server & Network Infrastructure (Cisco, Access Points)"
+    ]
+  },
+  {
     role: "IT Officer",
     company: "Fashion Group",
-    period: "February 2025 – Present",
+    period: "February 2025 – December 2025",
     description:
       "Administer and maintain IT infrastructure, ensuring high system availability, performance, and security. Maintain and update the company's website, ensuring functionality, security, and up-to-date content.",
     technologies: [
