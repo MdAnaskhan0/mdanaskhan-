@@ -1,44 +1,184 @@
 @import "tailwindcss";
 
-@keyframes tilt {
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+@theme {
+    --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Sora", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-    0%,
-    100% {
-        transform: rotate(0deg);
-    }
+    /* Palette: #010736 navy, #092328 deep teal, #0F3040 slate teal */
+    --color-ink: #010736;
+    --color-surface: #092328;
+    --color-surface-2: #0f3040;
+    --color-line: #1a4357;
+    --color-line-strong: #2a5c72;
+    --color-fg: #e8f2f6;
+    --color-muted: #93adbb;
+    --color-accent: #34d399;
+    --color-accent-strong: #10b981;
+    --color-accent-2: #38bdf8;
 
-    25% {
-        transform: rotate(1deg);
-    }
-
-    75% {
-        transform: rotate(-1deg);
-    }
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-marquee: marquee 38s linear infinite;
+    --animate-blink: blink 1.1s steps(1) infinite;
+    --animate-shimmer: shimmer 2.4s linear infinite;
 }
 
-.animate-tilt {
-    animation: tilt 10s infinite linear;
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
-/* Smooth scrolling */
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background: var(--color-ink);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
+body {
+    margin: 0;
+    background:
+        radial-gradient(1100px 760px at 12% 0%, rgb(15 48 64 / 0.95) 0%, transparent 62%),
+        radial-gradient(1000px 720px at 95% 45%, rgb(9 35 40 / 0.95) 0%, transparent 62%),
+        radial-gradient(900px 700px at 20% 100%, rgb(15 48 64 / 0.7) 0%, transparent 60%),
+        var(--color-ink);
+    background-attachment: fixed;
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-::-webkit-scrollbar-track {
-    background: #1f2937;
+::selection {
+    background: rgb(52 211 153 / 0.3);
+    color: #fff;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #10b981;
-    border-radius: 4px;
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #059669;
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: var(--color-line-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-strong); }
+
+/* ------------------------------------------------------------------ */
+/* Custom cursor: only on devices with a precise pointer               */
+/* ------------------------------------------------------------------ */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role="button"],
+html.has-custom-cursor [data-cursor] {
+    cursor: none;
+}
+
+html.has-custom-cursor input,
+html.has-custom-cursor textarea {
+    cursor: text;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable surfaces                                                   */
+/* ------------------------------------------------------------------ */
+.bg-grid {
+    background-image:
+        linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Card that lights up under the pointer (set --mx / --my from JS) */
+.spotlight {
+    position: relative;
+    isolation: isolate;
+}
+
+.spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+        320px circle at var(--mx, 50%) var(--my, 50%),
+        rgb(52 211 153 / 0.85),
+        transparent 60%
+    );
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        420px circle at var(--mx, 50%) var(--my, 50%),
+        rgb(52 211 153 / 0.08),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.spotlight:hover::before,
+.spotlight:hover::after {
+    opacity: 1;
+}
+
+.text-gradient {
+    background: linear-gradient(110deg, #e6edf3 20%, #34d399 50%, #38bdf8 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Respect reduced motion                                              */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

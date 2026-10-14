@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
@@ -9,70 +10,83 @@ import Projects from './components/sections/Projects';
 import Skills from './components/sections/Skills';
 import Certifications from './components/sections/Certifications';
 import Contact from './components/sections/Contact';
-import LoaderImage from './assets/profile/LoaderImage.jpg'
+import MouseEffects from './components/ui/MouseEffects';
+import ScrollProgress from './components/ui/ScrollProgress';
+import LoaderImage from './assets/profile/LoaderImage.jpg';
+
+const LOAD_MS = 2200;
+
+const Preloader = ({ progress }) => (
+    <motion.div
+        key="preloader"
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink"
+        exit={{ y: '-100%' }}
+        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+    >
+        <div className="relative h-36 w-36">
+            <div className="absolute inset-0 animate-[spin_2.4s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,var(--color-accent),transparent_60%,var(--color-accent-2))] blur-[2px]" />
+            <div className="absolute inset-[3px] overflow-hidden rounded-full bg-white">
+                <img src={LoaderImage} alt="" className="h-full w-full object-cover" />
+            </div>
+        </div>
+        <div className="mt-8 font-mono text-sm text-muted" aria-live="polite">
+            loading portfolio <span className="text-accent">{Math.round(progress)}%</span>
+        </div>
+        <div className="mt-4 h-0.5 w-48 overflow-hidden rounded-full bg-line">
+            <div className="h-full bg-gradient-to-r from-accent to-accent-2" style={{ width: `${progress}%` }} />
+        </div>
+    </motion.div>
+);
 
 const App = () => {
-  const [activeSection, setActiveSection] = useState('home');
-  const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
+    const [progress, setProgress] = useState(0);
 
-  // Preloader effect
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // 3 seconds
+    // Preloader: progress counts up, then the curtain lifts
+    useEffect(() => {
+        const start = performance.now();
+        let raf;
+        const tick = (now) => {
+            const t = Math.min((now - start) / LOAD_MS, 1);
+            setProgress((1 - Math.pow(1 - t, 3)) * 100);
+            if (t < 1) raf = requestAnimationFrame(tick);
+            else setTimeout(() => setIsLoading(false), 250);
+        };
+        raf = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(raf);
+    }, []);
 
-    return () => clearTimeout(timer);
-  }, []);
+    useEffect(() => {
+        document.body.style.overflow = isLoading ? 'hidden' : '';
+        if (!isLoading && window.location.hash) {
+            document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
+        }
+    }, [isLoading]);
 
-  // Handle navigation
-  useEffect(() => {
-    if (!isLoading) {
-      const handleHashChange = () => {
-        const hash = window.location.hash.substring(1);
-        if (hash) setActiveSection(hash);
-      };
-
-      window.addEventListener('hashchange', handleHashChange);
-      return () => window.removeEventListener('hashchange', handleHashChange);
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 z-50">
-        <div className="text-center">
-          <img
-            src={LoaderImage}
-            alt="Loading..."
-            className="mx-auto mb-4 w-32 h-32 object-contain rounded-full animate-spin"
-            style={{
-              animationDuration: '3s',
-              animationTimingFunction: 'linear'
-            }}
-          />
+        <div className="min-h-screen font-sans text-fg">
+            <AnimatePresence>{isLoading && <Preloader progress={progress} />}</AnimatePresence>
+
+            {!isLoading && (
+                <>
+                    <MouseEffects />
+                    <ScrollProgress />
+                    <Header />
+                    <main>
+                        <Hero />
+                        <About />
+                        <Experience />
+                        <Education />
+                        <Projects />
+                        <Skills />
+                        <Certifications />
+                        <Contact />
+                    </main>
+                    <Footer />
+                </>
+            )}
         </div>
-      </div>
     );
-  }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 font-mono">
-      <Header activeSection={activeSection} setActiveSection={setActiveSection} />
-
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Education />
-        <Projects />
-        <Skills />
-        <Certifications />
-        <Contact />
-      </main>
-
-      <Footer />
-    </div>
-  );
 };
 
 export default App;

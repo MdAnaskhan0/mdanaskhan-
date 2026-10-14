@@ -3,8 +3,6 @@ import DailyNeeds from "../assets/ProjectImage/ecommers.png";
 import HospitalManagement from "../assets/ProjectImage/hms.png";
 import RealtimeChat from "../assets/ProjectImage/chat.png";
 import Bullk from "../assets/ProjectImage/Bulk.png";
-// eslint-disable-next-line no-unused-vars
-import { image } from "framer-motion/client";
 
 export const personalInfo = {
   name: "Md. Anas Khan",
@@ -24,45 +22,63 @@ export const personalInfo = {
   },
 };
 
+export const roles = [
+  "Full Stack Developer",
+  "IT Infrastructure Engineer",
+  "React & Node.js Builder",
+  "Real-Time Systems Developer",
+];
+
 export const codeSnippets = [
-  [
-    "function createPortfolio() {",
-    "  const developer = {",
-    "    name: 'Md. Anas Khan',",
-    "    role: 'Full Stack Developer & IT Professional',",
-    "    skills: ['JavaScript', 'React', 'Redux', 'Node.js', 'PHP', 'MySQL', 'MongoDB', 'MikroTik'],",
-    "    passion: 'Building amazing digital experiences'",
-    "  };",
-    "  return developer;",
-    "}",
-  ],
-  [
-    "class Portfolio extends React.Component {",
-    "  constructor() {",
-    "    super();",
-    "    this.state = {",
-    "      projects: ['Employee Movement Data Record Web Solution'],",
-    "      Tech Stack: ['JavaScript', 'React', 'Tailwind', 'Node.JS', 'MySQL', 'Socket.IO'],",
-    "    };",
-    "  }",
-    "",
-    "  render() {",
-    "    return <div>Awesome Portfolio</div>;",
-    "  }",
-    "}",
-  ],
-  [
-    "// API fetch example",
-    "async function fetchProjects() {",
-    "  try {",
-    "    const response = await fetch('/api/projects');",
-    "    const data = await response.json();",
-    "    return data.projects;",
-    "  } catch (error) {",
-    "    console.error('Error:', error);",
-    "  }",
-    "}",
-  ],
+  {
+    file: "portfolio.js",
+    code: [
+      "function createPortfolio() {",
+      "  const developer = {",
+      "    name: 'Md. Anas Khan',",
+      "    role: 'Full Stack Developer & IT Professional',",
+      "    skills: ['React', 'Node.js', 'PHP',",
+      "             'MySQL', 'MongoDB', 'MikroTik'],",
+      "    passion: 'Building amazing digital experiences'",
+      "  };",
+      "  return developer;",
+      "}",
+    ],
+  },
+  {
+    file: "Portfolio.jsx",
+    code: [
+      "class Portfolio extends React.Component {",
+      "  constructor() {",
+      "    super();",
+      "    this.state = {",
+      "      projects: ['Employee Movement Data Record Web Solution'],",
+      "      techStack: ['React', 'Tailwind',",
+      "                  'Node.JS', 'MySQL', 'Socket.IO'],",
+      "    };",
+      "  }",
+      "",
+      "  render() {",
+      "    return <div>Awesome Portfolio</div>;",
+      "  }",
+      "}",
+    ],
+  },
+  {
+    file: "api.js",
+    code: [
+      "// API fetch example",
+      "async function fetchProjects() {",
+      "  try {",
+      "    const response = await fetch('/api/projects');",
+      "    const data = await response.json();",
+      "    return data.projects;",
+      "  } catch (error) {",
+      "    console.error('Error:', error);",
+      "  }",
+      "}",
+    ],
+  },
 ];
 
 export const projects = [
@@ -226,4 +242,15 @@ export const certifications = [
     period: "2024",
     link: "https://web.certificate.wfglobal.org/en/certificate?certificateId=6754962c02f442946f62df3d",
   },
+];
+
+export const navItems = [
+  "home",
+  "about",
+  "experience",
+  "education",
+  "projects",
+  "skills",
+  "certifications",
+  "contact",
 ];

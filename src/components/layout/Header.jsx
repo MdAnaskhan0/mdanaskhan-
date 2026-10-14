@@ -1,7 +1,5 @@
 import Navigation from './Navigation';
 
-const Header = ({ activeSection, setActiveSection }) => {
-    return <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />;
-};
+const Header = () => <Navigation />;
 
 export default Header;

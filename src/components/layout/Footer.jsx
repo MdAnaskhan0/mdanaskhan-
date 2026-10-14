@@ -1,43 +1,70 @@
-import { FaCode, FaGithub, FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa';
-import { personalInfo } from '../../data/portfolioData';
+import { FaCode, FaGithub, FaLinkedin, FaInstagram, FaFacebook, FaArrowUp } from 'react-icons/fa';
+import { personalInfo, navItems as NAV_ITEMS } from '../../data/portfolioData';
+import Magnetic from '../ui/Magnetic';
 
-const Footer = () => {
-    const socialLinks = [
-        { platform: 'github', icon: <FaGithub className="w-6 h-6" />, link: personalInfo.socialLinks.github },
-        { platform: 'linkedin', icon: <FaLinkedin className="w-6 h-6" />, link: personalInfo.socialLinks.linkedin },
-        { platform: 'instagram', icon: <FaInstagram className="w-6 h-6" />, link: personalInfo.socialLinks.instagram },
-        { platform: 'facebook', icon: <FaFacebook className="w-6 h-6" />, link: personalInfo.socialLinks.facebook }
-    ];
+const socials = [
+    { platform: 'GitHub', Icon: FaGithub, link: personalInfo.socialLinks.github },
+    { platform: 'LinkedIn', Icon: FaLinkedin, link: personalInfo.socialLinks.linkedin },
+    { platform: 'Instagram', Icon: FaInstagram, link: personalInfo.socialLinks.instagram },
+    { platform: 'Facebook', Icon: FaFacebook, link: personalInfo.socialLinks.facebook },
+];
 
-    return (
-        <footer className="bg-gray-900 py-12 px-6 border-t border-gray-800">
-            <div className="container mx-auto max-w-4xl">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                    <div className="text-xl font-bold text-green-400 flex items-center mb-4 md:mb-0">
-                        <FaCode className="w-6 h-6 mr-2" />
+const Footer = () => (
+    <footer className="relative border-t border-line bg-surface/60 px-6 pb-8 pt-14">
+        <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+                <div>
+                    <div className="flex items-center gap-2 font-display text-xl font-bold text-fg">
+                        <FaCode className="h-5 w-5 text-accent" />
                         {personalInfo.name}
                     </div>
-                    <div className="flex space-x-6">
-                        {socialLinks.map((social, index) => (
+                    <p className="mt-2 text-sm text-muted">{personalInfo.title}</p>
+                </div>
+
+                <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+                    {NAV_ITEMS.map((item) => (
+                        <li key={item}>
+                            <a href={`#${item}`} className="capitalize transition-colors hover:text-accent">
+                                {item}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="flex items-center gap-3">
+                    {socials.map(({ platform, Icon, link }) => (
+                        <Magnetic key={platform} strength={0.4}>
                             <a
-                                key={index}
-                                href={social.link}
+                                href={link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-green-400 transition-colors duration-300"
+                                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-muted transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:text-accent"
                             >
-                                <span className="sr-only">{social.platform}</span>
-                                {social.icon}
+                                <span className="sr-only">{platform}</span>
+                                <Icon className="h-5 w-5" />
                             </a>
-                        ))}
-                    </div>
-                </div>
-                <div className="text-center text-gray-500 mt-8 text-sm">
-                    &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+                        </Magnetic>
+                    ))}
+                    <Magnetic strength={0.4} className="ml-2">
+                        <a
+                            href="#home"
+                            aria-label="Back to top"
+                            className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-ink transition-transform duration-300 hover:-translate-y-1"
+                        >
+                            <FaArrowUp className="h-4 w-4" />
+                        </a>
+                    </Magnetic>
                 </div>
             </div>
-        </footer>
-    );
-};
+
+            <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-line pt-6 text-sm text-muted sm:flex-row">
+                <span>
+                    &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+                </span>
+                <span className="font-mono text-xs">Built with React, Tailwind CSS &amp; Framer Motion</span>
+            </div>
+        </div>
+    </footer>
+);
 
 export default Footer;

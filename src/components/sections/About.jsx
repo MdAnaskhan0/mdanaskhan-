@@ -1,258 +1,250 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
-    FaGithub,
-    FaLinkedin,
-    FaInstagram,
-    FaFacebook,
-    FaDownload,
-    FaCode,
-    FaServer,
-    FaDatabase,
-    FaTools,
-    FaUser,
-    FaEnvelope,
-    FaPhone,
-    FaMapMarkerAlt,
-    FaLaptop,
-    FaCogs,
-    FaComments
+    FaGithub, FaLinkedin, FaInstagram, FaFacebook, FaDownload, FaCode, FaServer, FaDatabase,
+    FaTools, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLaptop, FaComments,
 } from 'react-icons/fa';
 import { personalInfo } from '../../data/portfolioData';
 import SectionHeader from '../ui/SectionHeader';
+import Reveal from '../ui/Reveal';
+import Counter from '../ui/Counter';
+import TiltCard from '../ui/TiltCard';
+import SpotlightCard from '../ui/SpotlightCard';
+import Magnetic from '../ui/Magnetic';
 import Image from '../../assets/profile/Profile.jpg';
+import Resume from '../../assets/CV/Md.AnasKhan.pdf';
+
+const techStacks = {
+    frontend: ['React', 'JavaScript', 'Redux', 'Tailwind CSS', 'HTML5', 'CSS3'],
+    backend: ['Node.js', 'Express.js', 'PHP', 'Python', 'REST APIs'],
+    database: ['MySQL', 'MongoDB'],
+    tools: ['Git', 'VS Code', 'Figma', 'Postman', 'Mikrotik', 'Adobe Photoshop'],
+};
+
+const stats = [
+    { to: 2, suffix: '+', label: 'Years experience', Icon: FaCode },
+    { to: 15, suffix: '+', label: 'Projects completed', Icon: FaServer },
+    { to: 10, suffix: '+', label: 'Technologies', Icon: FaTools },
+    { to: 5, suffix: '+', label: 'Happy clients', Icon: FaDatabase },
+];
+
+const tabs = [
+    { id: 'personal', label: 'Personal info', Icon: FaUser },
+    { id: 'tech', label: 'Tech stack', Icon: FaLaptop },
+    { id: 'contact', label: 'Quick contact', Icon: FaComments },
+];
+
+const socials = [
+    { platform: 'GitHub', Icon: FaGithub, link: personalInfo.socialLinks.github },
+    { platform: 'LinkedIn', Icon: FaLinkedin, link: personalInfo.socialLinks.linkedin },
+    { platform: 'Instagram', Icon: FaInstagram, link: personalInfo.socialLinks.instagram },
+    { platform: 'Facebook', Icon: FaFacebook, link: personalInfo.socialLinks.facebook },
+];
 
 const About = () => {
     const [activeTab, setActiveTab] = useState('personal');
-    const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 300);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const personalDetails = [
-        { label: 'Name', value: personalInfo.name, icon: <FaUser className="text-green-400" /> },
-        { label: 'Email', value: personalInfo.email, icon: <FaEnvelope className="text-green-400" /> },
-        { label: 'Phone', value: personalInfo.phone, icon: <FaPhone className="text-green-400" /> },
-        { label: 'Location', value: personalInfo.location, icon: <FaMapMarkerAlt className="text-green-400" /> },
-    ];
-
-    const techStacks = {
-        frontend: ['React', 'JavaScript', 'Redux', 'Tailwind CSS', 'HTML5', 'CSS3'],
-        backend: ['Node.js', 'Express.js', 'PHP', 'Python', 'REST APIs'],
-        database: ['MySQL', 'MongoDB'],
-        tools: ['Git', 'VS Code', 'Figma', 'Postman', 'Mikrotik', 'Adobe Photoshop']
-    };
-
-    const stats = [
-        { number: '2+', label: 'Years Experience', icon: <FaCode className="text-green-400" /> },
-        { number: '15+', label: 'Projects Completed', icon: <FaServer className="text-green-400" /> },
-        { number: '10+', label: 'Technologies', icon: <FaTools className="text-green-400" /> },
-        { number: '5+', label: 'Happy Clients', icon: <FaDatabase className="text-green-400" /> }
+    const details = [
+        { label: 'Name', value: personalInfo.name, Icon: FaUser },
+        { label: 'Email', value: personalInfo.email, Icon: FaEnvelope },
+        { label: 'Phone', value: personalInfo.phone, Icon: FaPhone },
+        { label: 'Location', value: personalInfo.location, Icon: FaMapMarkerAlt },
     ];
 
     return (
-        <section id="about" className="py-20 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-10 left-10 w-20 h-20 border-2 border-green-400 rounded-full animate-pulse"></div>
-                <div className="absolute bottom-20 right-20 w-16 h-16 border-2 border-blue-400 rounded-full animate-bounce"></div>
-                <div className="absolute top-1/2 left-1/4 w-12 h-12 border-2 border-purple-400 rounded-full animate-spin"></div>
-            </div>
+        <section id="about" className="relative px-6 py-24">
+            <div className="mx-auto max-w-6xl">
+                <SectionHeader>About me</SectionHeader>
 
-            <div className="container mx-auto max-w-6xl relative z-10">
-                <SectionHeader>About Me</SectionHeader>
-
-                <div className={`flex flex-col lg:flex-row gap-12 items-start transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                    {/* Profile Image with Animation */}
-                    <div className="lg:w-2/5 flex justify-center">
-                        <div className="relative group">
-                            <div className="absolute -inset-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition-all duration-300 animate-tilt"></div>
-                            <div className="relative">
-                                <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-gray-800 group-hover:border-green-400 transition-all duration-500 shadow-2xl">
-                                    <img
-                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                                        src={Image}
-                                        alt={personalInfo.name}
-                                    />
-                                </div>
-                                <div className="absolute -bottom-4 -right-4 bg-green-500 text-gray-900 px-4 py-2 rounded-full font-bold shadow-lg animate-pulse">
-                                    Available
-                                </div>
+                <div className="grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+                    {/* Portrait */}
+                    <Reveal direction="right" className="mx-auto w-full max-w-sm">
+                        <div className="relative">
+                            <div aria-hidden="true" className="absolute -inset-3 overflow-hidden rounded-[2rem] blur-xl">
+                                <div className="absolute left-1/2 top-1/2 aspect-square w-[160%] -translate-x-1/2 -translate-y-1/2 animate-[spin_9s_linear_infinite] bg-[conic-gradient(from_0deg,var(--color-accent),transparent_30%,var(--color-accent-2),transparent_70%,var(--color-accent))] opacity-50" />
                             </div>
+                            <TiltCard className="rounded-3xl border border-line-strong bg-surface p-2" max={9}>
+                                <img
+                                    src={Image}
+                                    alt={personalInfo.name}
+                                    loading="lazy"
+                                    className="aspect-[4/5] w-full rounded-[1.25rem] object-cover object-top"
+                                />
+                            </TiltCard>
+                            <motion.div
+                                className="absolute -bottom-4 -right-3 flex items-center gap-2 rounded-full border border-accent/40 bg-ink px-4 py-2 text-sm font-semibold text-accent shadow-xl"
+                                animate={{ y: [0, -6, 0] }}
+                                transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+                            >
+                                <span className="h-2 w-2 rounded-full bg-accent" /> Open to work
+                            </motion.div>
                         </div>
-                    </div>
+                    </Reveal>
 
-                    {/* Content Section */}
-                    <div className="lg:w-3/5 space-y-8">
-                        {/* Introduction Text */}
-                        <div className="space-y-6">
-                            <h3 className="text-2xl md:text-3xl font-bold text-white">
-                                Crafting Digital Experiences with <span className="text-green-400">Precision</span>
+                    {/* Content */}
+                    <div className="space-y-8">
+                        <Reveal>
+                            <h3 className="font-display text-2xl font-bold leading-tight text-fg md:text-3xl">
+                                Crafting digital experiences with precision
                             </h3>
-                            {personalInfo.bio.map((paragraph, index) => (
-                                <p
-                                    key={index}
-                                    className="text-lg text-gray-300 leading-relaxed transition-all duration-500 delay-100"
-                                >
-                                    {paragraph}
-                                </p>
-                            ))}
-                        </div>
-
-                        {/* Stats Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {stats.map((stat, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-gray-800 bg-opacity-50 backdrop-blur-sm p-4 rounded-xl border border-gray-700 hover:border-green-400 hover:transform hover:-translate-y-1 transition-all duration-300 group"
-                                >
-                                    <div className="flex items-center justify-between mb-2">
-                                        <div className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
-                                            {stat.number}
-                                        </div>
-                                        <div className="text-xl">{stat.icon}</div>
-                                    </div>
-                                    <div className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
-                                        {stat.label}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Tabbed Content */}
-                        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden">
-                            {/* Tab Headers */}
-                            <div className="flex border-b border-gray-700">
-                                {[
-                                    { id: 'personal', label: 'Personal Info', icon: <FaUser className="w-4 h-4" /> },
-                                    { id: 'tech', label: 'Tech Stack', icon: <FaLaptop className="w-4 h-4" /> },
-                                    { id: 'contact', label: 'Quick Contact', icon: <FaComments className="w-4 h-4" /> }
-                                ].map((tab) => (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => setActiveTab(tab.id)}
-                                        className={`flex-1 py-4 px-6 flex items-center justify-center gap-2 transition-all duration-300 ${activeTab === tab.id
-                                                ? 'bg-green-500 text-gray-900 font-bold'
-                                                : 'text-gray-400 hover:text-white hover:bg-gray-700'
-                                            }`}
-                                    >
-                                        {tab.icon}
-                                        <span className="hidden sm:block">{tab.label}</span>
-                                    </button>
+                            <div className="mt-5 space-y-4">
+                                {personalInfo.bio.map((p) => (
+                                    <p key={p} className="max-w-[62ch] text-lg leading-relaxed text-muted">
+                                        {p}
+                                    </p>
                                 ))}
                             </div>
+                        </Reveal>
 
-                            {/* Tab Content */}
-                            <div className="p-6">
-                                {activeTab === 'personal' && (
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        {personalDetails.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="bg-gray-900 p-4 rounded-lg border border-gray-700 hover:border-green-400 transition-all duration-300 group"
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <div className="text-xl">
-                                                        {item.icon}
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-sm text-gray-400 group-hover:text-green-400 transition-colors">
-                                                            {item.label}
-                                                        </div>
-                                                        <div className="text-gray-200 font-medium">
-                                                            {item.value}
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                            {stats.map(({ to, suffix, label, Icon }, i) => (
+                                <Reveal key={label} delay={i * 0.08}>
+                                    <SpotlightCard className="group rounded-xl border border-line bg-surface p-4 transition-transform duration-300 hover:-translate-y-1">
+                                        <div className="relative z-[3]">
+                                            <div className="mb-2 flex items-center justify-between">
+                                                <span className="font-display text-3xl font-bold text-fg">
+                                                    <Counter to={to} suffix={suffix} />
+                                                </span>
+                                                <Icon className="text-accent transition-transform duration-300 group-hover:scale-125" />
                                             </div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {activeTab === 'tech' && (
-                                    <div className="space-y-6">
-                                        {Object.entries(techStacks).map(([category, technologies]) => (
-                                            <div key={category}>
-                                                <h4 className="text-lg font-semibold text-green-400 mb-3 capitalize">
-                                                    {category}
-                                                </h4>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {technologies.map((tech, index) => (
-                                                        <span
-                                                            key={index}
-                                                            className="px-3 py-2 bg-gray-900 text-gray-300 rounded-full text-sm border border-gray-700 hover:border-green-400 hover:text-green-400 transition-all duration-300 cursor-default"
-                                                        >
-                                                            {tech}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {activeTab === 'contact' && (
-                                    <div className="space-y-6">
-                                        <div className="text-center">
-                                            <p className="text-gray-300 mb-4">
-                                                Let's discuss your next project or opportunity
-                                            </p>
-                                            <div className="flex flex-wrap justify-center gap-4">
-                                                <a
-                                                    href={`mailto:${personalInfo.email}`}
-                                                    className="bg-green-500 hover:bg-green-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
-                                                >
-                                                    <FaEnvelope className="w-4 h-4" />
-                                                    Email Me
-                                                </a>
-                                                <a
-                                                    href="#contact"
-                                                    className="border border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center gap-2"
-                                                >
-                                                    <FaComments className="w-4 h-4" />
-                                                    Get In Touch
-                                                </a>
-                                            </div>
+                                            <div className="text-sm text-muted">{label}</div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
+                                    </SpotlightCard>
+                                </Reveal>
+                            ))}
                         </div>
 
-                        {/* Social Links & CTA */}
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6">
-                            <div className="flex items-center gap-4">
-                                <span className="text-gray-400">Follow me:</span>
-                                <div className="flex gap-3">
-                                    {[
-                                        { platform: 'github', icon: <FaGithub className="w-5 h-5" />, link: personalInfo.socialLinks.github },
-                                        { platform: 'linkedin', icon: <FaLinkedin className="w-5 h-5" />, link: personalInfo.socialLinks.linkedin },
-                                        { platform: 'instagram', icon: <FaInstagram className="w-5 h-5" />, link: personalInfo.socialLinks.instagram },
-                                        { platform: 'facebook', icon: <FaFacebook className="w-5 h-5" />, link: personalInfo.socialLinks.facebook }
-                                    ].map((social, index) => (
-                                        <a
-                                            key={index}
-                                            href={social.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-12 h-12 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-green-400 hover:border-green-400 hover:transform hover:-translate-y-1 transition-all duration-300 group"
+                        <Reveal>
+                            <div className="overflow-hidden rounded-2xl border border-line bg-surface">
+                                <div role="tablist" className="flex border-b border-line">
+                                    {tabs.map(({ id, label, Icon }) => (
+                                        <button
+                                            key={id}
+                                            role="tab"
+                                            aria-selected={activeTab === id}
+                                            onClick={() => setActiveTab(id)}
+                                            className={`relative flex flex-1 items-center justify-center gap-2 px-4 py-4 text-sm transition-colors ${
+                                                activeTab === id ? 'text-accent' : 'text-muted hover:text-fg'
+                                            }`}
                                         >
-                                            {social.icon}
-                                        </a>
+                                            <Icon className="h-4 w-4" />
+                                            <span className="hidden sm:block">{label}</span>
+                                            {activeTab === id && (
+                                                <motion.span
+                                                    layoutId="about-tab"
+                                                    className="absolute inset-x-0 bottom-0 h-0.5 bg-accent"
+                                                />
+                                            )}
+                                        </button>
                                     ))}
                                 </div>
-                            </div>
 
-                            <a
-                                href="/resume.pdf" // Replace with your actual resume link
-                                download
-                                className="bg-transparent border-2 border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center gap-2 group"
-                            >
-                                <FaDownload className="w-4 h-4 group-hover:animate-bounce" />
-                                Download Resume
-                            </a>
-                        </div>
+                                <div className="min-h-[15rem] p-6">
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={activeTab}
+                                            initial={{ opacity: 0, y: 12 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -8 }}
+                                            transition={{ duration: 0.25 }}
+                                        >
+                                            {activeTab === 'personal' && (
+                                                <div className="grid gap-4 md:grid-cols-2">
+                                                    {details.map(({ label, value, Icon }) => (
+                                                        <div
+                                                            key={label}
+                                                            className="group flex items-center gap-4 rounded-xl border border-line bg-ink/50 p-4 transition-colors hover:border-accent/60"
+                                                        >
+                                                            <Icon className="shrink-0 text-xl text-accent" />
+                                                            <div className="min-w-0">
+                                                                <div className="text-sm text-muted">{label}</div>
+                                                                <div className="truncate font-medium text-fg">{value}</div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {activeTab === 'tech' && (
+                                                <div className="space-y-5">
+                                                    {Object.entries(techStacks).map(([category, list]) => (
+                                                        <div key={category}>
+                                                            <h4 className="mb-2.5 text-sm font-semibold capitalize text-accent">
+                                                                {category}
+                                                            </h4>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {list.map((tech, i) => (
+                                                                    <motion.span
+                                                                        key={tech}
+                                                                        initial={{ opacity: 0, scale: 0.85 }}
+                                                                        animate={{ opacity: 1, scale: 1 }}
+                                                                        transition={{ delay: i * 0.04 }}
+                                                                        whileHover={{ y: -3 }}
+                                                                        className="cursor-default rounded-full border border-line bg-ink/60 px-3.5 py-1.5 text-sm text-fg/90 transition-colors hover:border-accent hover:text-accent"
+                                                                    >
+                                                                        {tech}
+                                                                    </motion.span>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {activeTab === 'contact' && (
+                                                <div className="flex h-full min-h-[11rem] flex-col items-center justify-center gap-5 text-center">
+                                                    <p className="text-fg/90">Let&apos;s discuss your next project or opportunity.</p>
+                                                    <div className="flex flex-wrap justify-center gap-4">
+                                                        <a
+                                                            href={`mailto:${personalInfo.email}`}
+                                                            className="flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-semibold text-ink transition-transform hover:-translate-y-0.5"
+                                                        >
+                                                            <FaEnvelope className="h-4 w-4" /> Email me
+                                                        </a>
+                                                        <a
+                                                            href="#contact"
+                                                            className="flex items-center gap-2 rounded-lg border border-accent/60 px-5 py-3 font-semibold text-accent transition-colors hover:bg-accent hover:text-ink"
+                                                        >
+                                                            <FaComments className="h-4 w-4" /> Send a message
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+                            </div>
+                        </Reveal>
+
+                        <Reveal>
+                            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+                                <div className="flex items-center gap-3">
+                                    {socials.map(({ platform, Icon, link }) => (
+                                        <Magnetic key={platform} strength={0.45}>
+                                            <a
+                                                href={link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex h-12 w-12 items-center justify-center rounded-full border border-line text-muted transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:text-accent"
+                                            >
+                                                <span className="sr-only">{platform}</span>
+                                                <Icon className="h-5 w-5" />
+                                            </a>
+                                        </Magnetic>
+                                    ))}
+                                </div>
+                                <Magnetic>
+                                    <a
+                                        href={Resume}
+                                        download="Md.AnasKhan-Resume.pdf"
+                                        className="group flex items-center gap-2 rounded-xl border-2 border-accent px-6 py-3 font-semibold text-accent transition-colors duration-300 hover:bg-accent hover:text-ink"
+                                    >
+                                        <FaDownload className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+                                        Download resume
+                                    </a>
+                                </Magnetic>
+                            </div>
+                        </Reveal>
                     </div>
                 </div>
             </div>
