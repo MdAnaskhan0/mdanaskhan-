@@ -5,6 +5,7 @@ import Logo from '../../assets/profile/Logo.png';
 import Resume from '../../assets/CV/Md.AnasKhan.pdf';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import Magnetic from '../ui/Magnetic';
+import ThemeSwitcher, { ThemeRow } from '../ui/ThemeSwitcher';
 import { navItems as NAV_ITEMS } from '../../data/portfolioData';
 
 const Navigation = () => {
@@ -49,7 +50,7 @@ const Navigation = () => {
                         scrolled ? 'py-1.5' : 'py-3'
                     }`}
                 >
-                    <a href="#home" aria-label="Back to top" className="block transition-transform duration-300 hover:scale-105">
+                    <a href="#home" aria-label="Back to top" className="logo-chip block transition-transform duration-300 hover:scale-105">
                         <img
                             src={Logo}
                             alt="Md. Anas Khan"
@@ -80,26 +81,30 @@ const Navigation = () => {
                         ))}
                     </ul>
 
-                    <div className="hidden lg:block">
+                    <div className="hidden items-center gap-3 lg:flex">
+                        <ThemeSwitcher />
                         <Magnetic strength={0.25}>
                             <a
                                 href={Resume}
                                 download="Md.AnasKhan-Resume.pdf"
-                                className="flex items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-sm font-medium text-accent transition-colors duration-300 hover:bg-accent hover:text-ink"
+                                className="flex items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-sm font-medium text-accent transition-colors duration-300 hover:bg-accent hover:text-on-accent"
                             >
                                 <FaDownload className="h-3 w-3" /> Resume
                             </a>
                         </Magnetic>
                     </div>
 
-                    <button
-                        className="p-2 text-muted transition-colors hover:text-accent lg:hidden"
-                        onClick={() => setOpen(true)}
-                        aria-label="Open menu"
-                        aria-expanded={open}
-                    >
-                        <FaBars className="h-6 w-6" />
-                    </button>
+                    <div className="flex items-center gap-1 lg:hidden">
+                        <ThemeSwitcher />
+                        <button
+                            className="p-2 text-muted transition-colors hover:text-accent"
+                            onClick={() => setOpen(true)}
+                            aria-label="Open menu"
+                            aria-expanded={open}
+                        >
+                            <FaBars className="h-6 w-6" />
+                        </button>
+                    </div>
                 </nav>
             </motion.header>
 
@@ -160,11 +165,12 @@ const Navigation = () => {
                                     </motion.li>
                                 ))}
                             </motion.ul>
-                            <div className="border-t border-line p-5">
+                            <div className="space-y-4 border-t border-line p-5">
+                                <ThemeRow />
                                 <a
                                     href={Resume}
                                     download="Md.AnasKhan-Resume.pdf"
-                                    className="flex items-center justify-center gap-2 rounded-lg bg-accent py-3 font-semibold text-ink"
+                                    className="flex items-center justify-center gap-2 rounded-lg bg-accent py-3 font-semibold text-on-accent"
                                 >
                                     <FaDownload className="h-4 w-4" /> Download resume
                                 </a>

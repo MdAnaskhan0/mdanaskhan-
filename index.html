@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/LoaderImage.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#010736" />
+    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Md. Anas Khan — Full Stack Developer & IT Professional. Web applications, real-time systems and IT infrastructure."
@@ -15,6 +15,14 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script>
+      try {
+        var t = localStorage.getItem('portfolio-theme');
+        document.documentElement.dataset.theme = ['black', 'white', 'navy'].indexOf(t) > -1 ? t : 'black';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'black';
+      }
+    </script>
     <title>Md. Anas Khan | Portfolio</title>
   </head>
   <body>

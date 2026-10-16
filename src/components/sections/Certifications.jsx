@@ -5,7 +5,7 @@ import SpotlightCard from '../ui/SpotlightCard';
 import Reveal from '../ui/Reveal';
 
 const Certifications = () => (
-    <section id="certifications" className="bg-surface/40 px-6 py-24">
+    <section id="certifications" className="bg-surface/25 px-6 py-24">
         <div className="mx-auto max-w-6xl">
             <SectionHeader>Certifications</SectionHeader>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

@@ -20,7 +20,7 @@ const TiltCard = ({ children, className = '', max = 7, glare = true }) => {
     const glareY = useTransform(py, (v) => `${v * 100}%`);
     const glareBg = useTransform(
         [glareX, glareY],
-        ([gx, gy]) => `radial-gradient(260px circle at ${gx} ${gy}, rgba(255,255,255,0.09), transparent 65%)`
+        ([gx, gy]) => `radial-gradient(260px circle at ${gx} ${gy}, var(--card-shine), transparent 65%)`
     );
 
     const onMove = (e) => {

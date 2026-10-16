@@ -197,13 +197,13 @@ const About = () => {
                                                     <div className="flex flex-wrap justify-center gap-4">
                                                         <a
                                                             href={`mailto:${personalInfo.email}`}
-                                                            className="flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-semibold text-ink transition-transform hover:-translate-y-0.5"
+                                                            className="flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-semibold text-on-accent transition-transform hover:-translate-y-0.5"
                                                         >
                                                             <FaEnvelope className="h-4 w-4" /> Email me
                                                         </a>
                                                         <a
                                                             href="#contact"
-                                                            className="flex items-center gap-2 rounded-lg border border-accent/60 px-5 py-3 font-semibold text-accent transition-colors hover:bg-accent hover:text-ink"
+                                                            className="flex items-center gap-2 rounded-lg border border-accent/60 px-5 py-3 font-semibold text-accent transition-colors hover:bg-accent hover:text-on-accent"
                                                         >
                                                             <FaComments className="h-4 w-4" /> Send a message
                                                         </a>
@@ -237,7 +237,7 @@ const About = () => {
                                     <a
                                         href={Resume}
                                         download="Md.AnasKhan-Resume.pdf"
-                                        className="group flex items-center gap-2 rounded-xl border-2 border-accent px-6 py-3 font-semibold text-accent transition-colors duration-300 hover:bg-accent hover:text-ink"
+                                        className="group flex items-center gap-2 rounded-xl border-2 border-accent px-6 py-3 font-semibold text-accent transition-colors duration-300 hover:bg-accent hover:text-on-accent"
                                     >
                                         <FaDownload className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
                                         Download resume

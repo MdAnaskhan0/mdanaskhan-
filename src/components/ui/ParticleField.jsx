@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useReducedMotion } from '../../hooks/useDevice';
+import { useTheme } from '../../hooks/useTheme';
 
 /**
  * Interactive particle network. Particles drift, connect to neighbours,
@@ -9,6 +10,15 @@ import { useReducedMotion } from '../../hooks/useDevice';
 const ParticleField = ({ className = '' }) => {
     const canvasRef = useRef(null);
     const reduced = useReducedMotion();
+    const [theme] = useTheme();
+    const colors = useRef({ a: '52, 211, 153', b: '56, 189, 248', boost: 1 });
+
+    // Re-read the accent colours from CSS whenever the theme changes
+    useEffect(() => {
+        const css = getComputedStyle(document.documentElement);
+        const rgb = (name) => css.getPropertyValue(name).trim().split(/\s+/).join(', ');
+        colors.current = { a: rgb('--accent-rgb'), b: rgb('--accent-2-rgb'), boost: theme === 'white' ? 1.6 : 1 };
+    }, [theme]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -81,7 +91,7 @@ const ParticleField = ({ className = '' }) => {
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(52, 211, 153, 0.75)';
+                ctx.fillStyle = `rgba(${colors.current.a}, ${Math.min(0.75 * colors.current.boost, 0.9)})`;
                 ctx.fill();
 
                 // Links between particles
@@ -89,7 +99,7 @@ const ParticleField = ({ className = '' }) => {
                     const q = particles[j];
                     const dist = Math.hypot(p.x - q.x, p.y - q.y);
                     if (dist < LINK) {
-                        ctx.strokeStyle = `rgba(52, 211, 153, ${(1 - dist / LINK) * 0.22})`;
+                        ctx.strokeStyle = `rgba(${colors.current.a}, ${(1 - dist / LINK) * 0.22 * colors.current.boost})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
@@ -101,7 +111,7 @@ const ParticleField = ({ className = '' }) => {
                 // Links to the cursor
                 const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
                 if (md < MOUSE_LINK) {
-                    ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - md / MOUSE_LINK) * 0.55})`;
+                    ctx.strokeStyle = `rgba(${colors.current.b}, ${(1 - md / MOUSE_LINK) * 0.55})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);

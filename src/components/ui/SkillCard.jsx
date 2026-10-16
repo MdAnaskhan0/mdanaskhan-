@@ -7,7 +7,7 @@ import SpotlightCard from './SpotlightCard';
 import Counter from './Counter';
 
 const ICONS = {
-    SiJavascript: { Icon: SiJavascript, color: '#f7df1e' },
+    SiJavascript: { Icon: SiJavascript, color: '#e2c400' },
     SiReact: { Icon: SiReact, color: '#61dafb' },
     SiNodedotjs: { Icon: SiNodedotjs, color: '#5fa04e' },
     SiTailwindcss: { Icon: SiTailwindcss, color: '#38bdf8' },

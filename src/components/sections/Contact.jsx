@@ -127,7 +127,7 @@ const Contact = () => {
 
     return (
         <section id="contact" className="relative overflow-hidden px-6 py-24">
-            <div aria-hidden="true" className="absolute -bottom-40 left-1/2 h-96 w-[48rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
+            <div aria-hidden="true" className="absolute -bottom-40 left-1/2 h-96 w-[48rem] -translate-x-1/2 rounded-full bg-accent/[0.04] blur-[120px]" />
             <div className="relative mx-auto max-w-6xl">
                 <SectionHeader subtitle="Have a project in mind or want to discuss an opportunity? Send a message and I'll reply as soon as I can.">
                     Get in touch
@@ -204,7 +204,7 @@ const Contact = () => {
                                     <button
                                         type="submit"
                                         disabled={isLoading}
-                                        className="group flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-6 py-3.5 font-semibold text-ink shadow-lg shadow-accent/20 transition-all duration-300 hover:shadow-accent/40 disabled:cursor-not-allowed disabled:opacity-70"
+                                        className="group flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-6 py-3.5 font-semibold text-on-accent shadow-lg shadow-accent/20 transition-all duration-300 hover:shadow-accent/40 disabled:cursor-not-allowed disabled:opacity-70"
                                     >
                                         {isLoading ? (
                                             <>

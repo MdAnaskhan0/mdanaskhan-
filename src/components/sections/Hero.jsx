@@ -36,8 +36,8 @@ const Hero = () => {
             {/* Backdrop */}
             <div aria-hidden="true" className="absolute inset-0">
                 <div className="bg-grid absolute inset-0" />
-                <div className="absolute -left-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-accent/10 blur-[120px]" />
-                <div className="absolute -bottom-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-accent-2/10 blur-[120px]" />
+                <div className="absolute -left-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-accent/[0.04] blur-[120px]" />
+                <div className="absolute -bottom-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-accent-2/[0.05] blur-[120px]" />
                 <ParticleField />
             </div>
 
@@ -94,7 +94,7 @@ const Hero = () => {
                             <Magnetic>
                                 <a
                                     href="#projects"
-                                    className="group flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-ink shadow-lg shadow-accent/20 transition-shadow duration-300 hover:shadow-accent/40"
+                                    className="group flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-on-accent shadow-lg shadow-accent/20 transition-shadow duration-300 hover:shadow-accent/40"
                                 >
                                     View projects
                                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />

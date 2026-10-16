@@ -20,7 +20,7 @@ const Projects = () => {
     );
 
     return (
-        <section id="projects" className="bg-surface/40 px-6 py-24">
+        <section id="projects" className="bg-surface/25 px-6 py-24">
             <div className="mx-auto max-w-6xl">
                 <SectionHeader subtitle="Full-stack systems I've designed, built and deployed. Filter by technology.">
                     Projects
@@ -36,7 +36,7 @@ const Projects = () => {
                                 onClick={() => setFilter(f)}
                                 className={`relative rounded-full border px-4 py-1.5 font-mono text-sm transition-colors ${
                                     filter === f
-                                        ? 'border-transparent text-ink'
+                                        ? 'border-transparent text-on-accent'
                                         : 'border-line text-muted hover:border-accent/60 hover:text-fg'
                                 }`}
                             >

@@ -86,7 +86,7 @@ const MouseEffects = () => {
                     translateX: '-50%',
                     translateY: '-50%',
                     background:
-                        'radial-gradient(circle, rgba(52,211,153,0.075) 0%, rgba(56,189,248,0.03) 40%, transparent 70%)',
+                        'radial-gradient(circle, rgb(var(--accent-rgb) / 0.06) 0%, rgb(var(--accent-2-rgb) / 0.02) 40%, transparent 70%)',
                     opacity: visible ? 1 : 0,
                 }}
             />
@@ -101,12 +101,16 @@ const MouseEffects = () => {
                     height: ringSize,
                     opacity: show ? 1 : 0,
                     scale: pressed ? 0.85 : 1,
-                    backgroundColor: hovering ? 'rgba(52,211,153,0.14)' : 'rgba(52,211,153,0)',
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 24 }}
             >
+                <motion.span
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-full bg-accent/15"
+                    animate={{ opacity: hovering ? 1 : 0 }}
+                />
                 {label && (
-                    <span className="font-mono text-[11px] font-medium text-accent">{label}</span>
+                    <span className="relative font-mono text-[11px] font-medium text-accent">{label}</span>
                 )}
             </motion.div>
 

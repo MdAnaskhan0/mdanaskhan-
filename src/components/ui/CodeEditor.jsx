@@ -84,7 +84,7 @@ const CodeEditor = () => {
     const lines = fullText.slice(0, typed).split('\n');
 
     return (
-        <div className="overflow-hidden rounded-xl border border-line-strong bg-surface/90 shadow-2xl shadow-black/40 backdrop-blur">
+        <div className="scope-black overflow-hidden rounded-xl border border-line-strong bg-surface/90 shadow-2xl shadow-black/40 backdrop-blur">
             {/* Title bar */}
             <div className="flex items-center border-b border-line bg-ink/60 pl-4">
                 <div className="mr-3 flex items-center gap-1.5">

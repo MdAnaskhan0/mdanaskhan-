@@ -49,7 +49,7 @@ const Footer = () => (
                         <a
                             href="#home"
                             aria-label="Back to top"
-                            className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-ink transition-transform duration-300 hover:-translate-y-1"
+                            className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-on-accent transition-transform duration-300 hover:-translate-y-1"
                         >
                             <FaArrowUp className="h-4 w-4" />
                         </a>

@@ -12,7 +12,7 @@ const items = experiences.map((e) => ({
 }));
 
 const Experience = () => (
-    <section id="experience" className="bg-surface/40 px-6 py-24">
+    <section id="experience" className="bg-surface/25 px-6 py-24">
         <div className="mx-auto max-w-4xl">
             <SectionHeader subtitle="Where I've worked and what I've built along the way.">Experience</SectionHeader>
             <Timeline items={items} icon={<FaBriefcase className="h-4 w-4 md:h-5 md:w-5" />} />
